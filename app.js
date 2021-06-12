@@ -17,6 +17,7 @@ let btn = document.getElementById('mediaSettingsBtn')
 let stopBtn = document.getElementById('stop')
 let resumeBtn = document.getElementById('resume')
 let resolutionDropdown = document.getElementById('resolutionDropdown')
+let errorDiv = document.getElementById('error')
 let video = document.getElementById('video')
 
 //----------------------------------------------------------------------------------------------------
@@ -25,12 +26,22 @@ getMedia = async (constraints) => {
   try 
   {
     stream = await navigator.mediaDevices.getUserMedia(constraints);
-    console.log(stream);
+    video.classList.remove('d-none')
     return stream;
   } 
   catch(e) 
   {
     console.error('Error: ', e);
+    video.classList.add('d-none')
+    let error = `
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        ${e}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    `
+    errorDiv.innerHTML = error
     return;
   }
 }
