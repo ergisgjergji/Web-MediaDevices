@@ -13,16 +13,16 @@ let mediaConfig = {
 };
 
 let stream = null;
-let btn = document.getElementById('mediaSettingsBtn')
-let stopBtn = document.getElementById('stop')
-let resumeBtn = document.getElementById('resume')
+let startBtn = document.getElementById('startStreamBtn')
+let stopBtn = document.getElementById('stopStreamBtn')
 let resolutionDropdown = document.getElementById('resolutionDropdown')
-let errorDiv = document.getElementById('error')
+let errorDiv = document.getElementById('error-container')
 let video = document.getElementById('video')
 
 //----------------------------------------------------------------------------------------------------
 
 getMedia = async (constraints) => {
+  clearErrors()
   try 
   {
     stream = await navigator.mediaDevices.getUserMedia(constraints);
@@ -47,7 +47,7 @@ getMedia = async (constraints) => {
 }
 
 // Getting media
-btn.addEventListener('click', async () => {
+startBtn.addEventListener('click', async () => {
   stopStream(stream)
   
   let resolution = resolutionDropdown.value;
@@ -62,18 +62,6 @@ btn.addEventListener('click', async () => {
 
 stopBtn.addEventListener('click', () => {
   stopStream(stream)
-})
-
-resumeBtn.addEventListener('click', () => {
-  resumeStream(stream)
-})
-
-stopBtn.addEventListener('click', () => {
-  stopStream(stream)
-})
-
-resumeBtn.addEventListener('click', () => {
-  btn.click()
 })
 
 // Changing resolution
@@ -93,4 +81,8 @@ resolutionDropdown.addEventListener('change', async () => {
 stopStream = (stream) => {
   if(stream)
     stream.getTracks().forEach(track => track.stop())
+}
+
+clearErrors = () => {
+  errorDiv.innerHTML = ''
 }

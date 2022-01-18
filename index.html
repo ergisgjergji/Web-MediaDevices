@@ -7,22 +7,20 @@
   </head>
   <body>
     
-    <div class="row p-2">
-      <div class="col-12">
-          <button id="mediaSettingsBtn" class="btn btn-md btn-primary"> Start stream </button>
-          <select id="resolutionDropdown" class="custom-select">
-            <option value='1080p'> 1080p </option>
-            <option value='720p'> 720p </option>
-            <option value='480p'> 480p </option>
-            <option value='360p'> 360p </option>
-            <option value='240p'> 240p </option>
-            <option value='144p' selected> 144p </option>
-          </select>
-          <button id="stop" class="btn btn-md btn-danger"> Stop stream </button>
-          <button id="resume" class="btn btn-md btn-success"> Resume stream </button>
-          <div id="error" class="col-12 p-0 mt-2">
-          </div>
-      </div>
+    <div id="controls" class="row col-12 m-0 p-2">
+      <select id="resolutionDropdown" class="custom-select rounded-0">
+        <option value='1080p'> &#9881; 1080p </option>
+        <option value='720p'> &#9881; 720p </option>
+        <option value='480p'> &#9881; 480p </option>
+        <option value='360p'> &#9881; 360p </option>
+        <option value='240p'> &#9881; 240p </option>
+        <option value='144p' selected> &#9881; 144p </option>
+      </select>
+      <button id="startStreamBtn" class="btn btn-md btn-success rounded-0 mx-2"> Start stream </button>
+      <button id="stopStreamBtn" class="btn btn-md btn-danger rounded-0"> Stop stream </button>
+    </div>
+
+    <div id="error-container" class="row col-12 m-0 p-0 mt-2">
     </div>
 
     <video id="video" class="d-none" autoplay></video>
